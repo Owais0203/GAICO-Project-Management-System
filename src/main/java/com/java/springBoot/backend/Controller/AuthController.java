@@ -6,6 +6,7 @@ import com.java.springBoot.backend.Repository.UserRepository;
 import com.java.springBoot.backend.Request.LoginRequest;
 import com.java.springBoot.backend.Response.AuthResponse;
 import com.java.springBoot.backend.Service.CustomUserDetailsImpl;
+import com.java.springBoot.backend.Service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,11 @@ public class AuthController {
     @Autowired
     private CustomUserDetailsImpl customUserDetails;
 
+    @Autowired
+    private SubscriptionService subscriptionService;
+
     @PostMapping("/signup")
-    public ResponseEntity<AuthResponse> createUserHandler(@RequestBody Users user) {
+    public ResponseEntity<AuthResponse> createUserHandler(@RequestBody Users user) throws Exception {
 
         Users isUserExist = userRepository.findByEmail(user.getEmail());
 
@@ -48,6 +52,8 @@ public class AuthController {
         createdUser.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Users savedUser = userRepository.save(createdUser);
+
+        subscriptionService.createSubscription(savedUser);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
 
