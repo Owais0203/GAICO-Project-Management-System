@@ -27,6 +27,8 @@ public class Project {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
+    private int budget;
+
     private List<String> tags = new ArrayList<>();
 
     @JsonIgnore
@@ -34,7 +36,10 @@ public class Project {
     private Chat chat;
 
     @ManyToOne
-    private Users owner;
+    private Users projectManager;
+
+    @OneToOne
+    private Users projectController;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Issue> issues = new ArrayList<>();
