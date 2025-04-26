@@ -36,10 +36,7 @@ public class Project {
     private Chat chat;
 
     @ManyToOne
-    private Users projectManager;
-
-    @OneToOne
-    private Users projectController;
+    private Users owner;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Issue> issues = new ArrayList<>();
