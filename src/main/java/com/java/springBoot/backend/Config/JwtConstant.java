@@ -2,6 +2,6 @@ package com.java.springBoot.backend.Config;
 
 public class JwtConstant {
 
-    public static final String SECRET_Key = "iowhfihihfiodibcidsbivbaiooifbivbdfsvobufdodklxkdhisahpiohivbifougaubdibvobeurgaoru";
+    public static final String SECRET_Key = "iowhfihihfiodibcidsbivbaiooifbivbdfsvobufdodklxkdhisahpiohivbifougaubdibvobeurgaoruirwpoehfiwehaouiehguibresuigiuhruigfrhevakfvezfzrfzrzvfzvzfvezavfzvzurfzvzvfhzvjskrfvuzawkvzfvrhskvfhvrkuwavzfbhsbfrvezaovwz8orvfzvrzavozvf48vfo4v7avfufvurve87w8vzrfvbzureovzwvzwvfzvrzvfurvowfv48zfvzvfrzefvzvvjfvfzruvfkvf";
     public static final String JWT_HEADER = "Authorization";
 }

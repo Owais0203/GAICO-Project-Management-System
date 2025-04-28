@@ -1,6 +1,7 @@
 package com.java.springBoot.backend.Config;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
@@ -44,8 +45,8 @@ public class JwtTokenValidator extends OncePerRequestFilter {
                 Authentication authentication = new UsernamePasswordAuthenticationToken(email, null, authorityList);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-            catch (Exception e) {
-                throw new BadCredentialsException("Invalid token ...");
+            catch (JwtException e) {
+                throw new BadCredentialsException("Invalid token: " + e.getMessage());
             }
         }
 

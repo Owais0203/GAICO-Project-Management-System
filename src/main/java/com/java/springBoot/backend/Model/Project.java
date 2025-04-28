@@ -38,6 +38,9 @@ public class Project {
     @ManyToOne
     private Users owner;
 
+    @OneToOne
+    private Users projectController;
+
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Issue> issues = new ArrayList<>();
 
