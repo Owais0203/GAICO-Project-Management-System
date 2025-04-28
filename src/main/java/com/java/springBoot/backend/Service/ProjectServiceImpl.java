@@ -23,16 +23,18 @@ public class ProjectServiceImpl implements ProjectService {
     private ChatService chatService;
 
     @Override
-    public Project createProject(Project project, Users user, Users projectController) throws Exception {
+    public Project createProject(Project project, Users user) throws Exception {
         Project createdProject = new Project();
 
         createdProject.setOwner(user);
-        createdProject.setProjectController(projectController);
         createdProject.setTags(project.getTags());
         createdProject.setName(project.getName());
         createdProject.setCategory(project.getCategory());
         createdProject.setDescription(project.getDescription());
         createdProject.getTeam().add(user);
+        createdProject.setBudget(project.getBudget());
+        createdProject.setStartDate(project.getStartDate());
+        createdProject.setEndDate(project.getEndDate());
 
         Project savedProject = projectRepository.save(createdProject);
 

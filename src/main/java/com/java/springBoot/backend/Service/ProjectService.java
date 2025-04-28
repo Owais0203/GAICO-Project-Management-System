@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProjectService {
 
-    Project createProject(Project project, Users user, Users projectController) throws Exception;
+    Project createProject(Project project, Users user) throws Exception;
 
     List<Project> getProjectByTeam(Users user, String category, String tag) throws Exception;
 
