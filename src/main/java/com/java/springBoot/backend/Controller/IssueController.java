@@ -41,7 +41,8 @@ public class IssueController {
         Issue createdIssue = issueService.createIssue(issue, tokenUser);
         IssueDTO issueDTO = new IssueDTO();
         issueDTO.setDescription(createdIssue.getDescription());
-        issueDTO.setDueDate(createdIssue.getDueDate());
+        issueDTO.setEndDate(createdIssue.getEndDate());
+        issueDTO.setStartDate(createdIssue.getStartDate());
         issueDTO.setId(createdIssue.getId());
         issueDTO.setPriority(createdIssue.getPriority());
         issueDTO.setProject(createdIssue.getProject());
@@ -75,6 +76,17 @@ public class IssueController {
     public ResponseEntity<Issue> updateIssueStatus(@PathVariable Long issueId, @PathVariable String status) throws Exception {
         Issue issue = issueService.updateStatus(issueId, status);
         return ResponseEntity.ok(issue);
+    }
+
+    // Get all issues
+    @GetMapping
+    public ResponseEntity<List<Issue>> getAllIssues() {
+        try {
+            List<Issue> issues = issueService.getAllIssues();
+            return ResponseEntity.ok(issues);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
 }

@@ -12,5 +12,6 @@ public class IssueRequest {
     private String status;
     private Long projectId;
     private String priority;
-    private LocalDate dueDate;
+    private LocalDate endDate;
+    private LocalDate startDate;
 }
