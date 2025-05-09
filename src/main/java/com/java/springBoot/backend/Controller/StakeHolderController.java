@@ -37,4 +37,16 @@ public class StakeHolderController {
     public StakeHolder getStakeHolderById(@PathVariable Long id) {
         return stakeHolderService.getStakeHolderById(id);
     }
+
+    // Update stakeholder
+    @PutMapping("/{id}")
+    public StakeHolder updateStakeHolder(@PathVariable Long id, @RequestBody StakeHolder stakeHolder) {
+        return stakeHolderService.updateStakeHolder(id, stakeHolder);
+    }
+
+    // Delete stakeholder
+    @DeleteMapping("/{id}")
+    public void deleteStakeHolder(@PathVariable Long id) {
+        stakeHolderService.deleteStakeHolder(id);
+    }
 }

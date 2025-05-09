@@ -10,4 +10,6 @@ public interface StakeHolderService {
     StakeHolder createStakeHolder(StakeHolder stakeHolder);
     List<StakeHolder> getAllStakeHolders();
     StakeHolder getStakeHolderById(Long id);
+    StakeHolder updateStakeHolder(Long id, StakeHolder stakeHolder);
+    void deleteStakeHolder(Long id);
 }

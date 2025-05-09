@@ -32,4 +32,20 @@ public class StakeHolderServiceImpl implements StakeHolderService{
         return stakeHolderRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public StakeHolder updateStakeHolder(Long id, StakeHolder stakeHolder) {
+        if (stakeHolderRepository.existsById(id)) {
+            stakeHolder.setId(id);
+            return stakeHolderRepository.save(stakeHolder);
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteStakeHolder(Long id) {
+        if (stakeHolderRepository.existsById(id)) {
+            stakeHolderRepository.deleteById(id);
+        }
+    }
+
 }
