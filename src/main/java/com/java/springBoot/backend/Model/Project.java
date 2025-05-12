@@ -25,9 +25,7 @@ public class Project {
     private String description;
     private CategoryType category;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
     private int budget;
