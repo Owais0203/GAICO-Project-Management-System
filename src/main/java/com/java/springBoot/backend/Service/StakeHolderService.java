@@ -12,4 +12,5 @@ public interface StakeHolderService {
     StakeHolder getStakeHolderById(Long id);
     StakeHolder updateStakeHolder(Long id, StakeHolder stakeHolder);
     void deleteStakeHolder(Long id);
+    List<StakeHolder> getStakeHoldersByProjectId(Long projectId);
 }

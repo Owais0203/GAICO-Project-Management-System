@@ -78,6 +78,20 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
+    public Issue updateIssue(Long issueId, IssueRequest issueRequest) throws Exception {
+        Issue issue = getIssueById(issueId);
+
+        issue.setTitle(issueRequest.getTitle());
+        issue.setDescription(issueRequest.getDescription());
+        issue.setStatus(issueRequest.getStatus());
+        issue.setPriority(issueRequest.getPriority());
+        issue.setEndDate(issueRequest.getEndDate());
+        issue.setStartDate(issueRequest.getStartDate());
+
+        return issueRepository.save(issue);
+    }
+
+    @Override
     public Issue updateStatus(Long issueId, String status) throws Exception {
 
         Issue issue = getIssueById(issueId);

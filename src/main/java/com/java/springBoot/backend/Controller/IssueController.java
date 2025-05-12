@@ -72,6 +72,14 @@ public class IssueController {
         return ResponseEntity.ok(issue);
     }
 
+    // Update issue
+    @PutMapping("/{issueId}")
+    public ResponseEntity<Issue> updateIssue(@PathVariable Long issueId, @RequestBody IssueRequest issueRequest) throws Exception {
+        Issue updatedIssue = issueService.updateIssue(issueId, issueRequest);
+        return ResponseEntity.ok(updatedIssue);
+    }
+
+
     @PutMapping("/{issueId}/status/{status}")
     public ResponseEntity<Issue> updateIssueStatus(@PathVariable Long issueId, @PathVariable String status) throws Exception {
         Issue issue = issueService.updateStatus(issueId, status);

@@ -49,4 +49,10 @@ public class StakeHolderController {
     public void deleteStakeHolder(@PathVariable Long id) {
         stakeHolderService.deleteStakeHolder(id);
     }
+
+    // Get stakeholder By ProjectId
+    @GetMapping("/project/{projectId}")
+    public List<StakeHolder> getStakeHoldersByProjectId(@PathVariable Long projectId) {
+        return stakeHolderService.getStakeHoldersByProjectId(projectId);
+    }
 }

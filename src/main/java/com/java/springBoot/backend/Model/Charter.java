@@ -4,20 +4,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
-public class StakeHolder {
+public class Charter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-    private String role;
-    private String contact;
-    private String influence;
+    private String title;
+    private String description;
+    private String sponsors;
+    private String objective;
+    private String deliverables;
+    private Boolean approved;
 
     @JsonIgnore
-    @ManyToOne
+    @OneToOne
     private Project project;
 }

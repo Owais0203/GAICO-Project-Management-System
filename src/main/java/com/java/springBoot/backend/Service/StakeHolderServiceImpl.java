@@ -48,4 +48,9 @@ public class StakeHolderServiceImpl implements StakeHolderService{
         }
     }
 
+    @Override
+    public List<StakeHolder> getStakeHoldersByProjectId(Long projectId) {
+        return stakeHolderRepository.findByProjectId(projectId);
+    }
+
 }
