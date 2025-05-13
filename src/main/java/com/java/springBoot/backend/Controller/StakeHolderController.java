@@ -1,9 +1,13 @@
 package com.java.springBoot.backend.Controller;
 
+import com.java.springBoot.backend.DTO.IssueDTO;
+import com.java.springBoot.backend.DTO.StakeholderDTO;
 import com.java.springBoot.backend.Model.StakeHolder;
+import com.java.springBoot.backend.Request.StakeholderRequest;
 import com.java.springBoot.backend.Service.StakeHolderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +26,19 @@ public class StakeHolderController {
 
     // Create stakeholder
     @PostMapping
-    public StakeHolder createStakeHolder(@RequestBody StakeHolder stakeHolder) {
-        return stakeHolderService.createStakeHolder(stakeHolder);
+    public ResponseEntity<StakeholderDTO> createStakeHolder(@RequestBody StakeholderRequest stakeHolder) throws Exception {
+
+        StakeHolder createdStakeHolder = stakeHolderService.createStakeHolder(stakeHolder);
+        StakeholderDTO stakeholderDTO = new StakeholderDTO();
+        stakeholderDTO.setId(createdStakeHolder.getId());
+        stakeholderDTO.setName(createdStakeHolder.getName());
+        stakeholderDTO.setContact(createdStakeHolder.getContact());
+        stakeholderDTO.setInfluence(createdStakeHolder.getInfluence());
+        stakeholderDTO.setRole(createdStakeHolder.getRole());
+        stakeholderDTO.setProjectID(createdStakeHolder.getProjectID());
+        stakeholderDTO.setProject(createdStakeHolder.getProject());
+
+        return ResponseEntity.ok(stakeholderDTO);
     }
 
     // Get all stakeholders

@@ -16,6 +16,7 @@ public class StakeHolder {
     private String role;
     private String contact;
     private String influence;
+    private Long projectID;
 
     @JsonIgnore
     @ManyToOne

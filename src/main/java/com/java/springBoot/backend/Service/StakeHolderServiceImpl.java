@@ -1,7 +1,9 @@
 package com.java.springBoot.backend.Service;
 
+import com.java.springBoot.backend.Model.Project;
 import com.java.springBoot.backend.Model.StakeHolder;
 import com.java.springBoot.backend.Repository.StakeHolderRepository;
+import com.java.springBoot.backend.Request.StakeholderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,15 +12,25 @@ import java.util.List;
 @Service
 public class StakeHolderServiceImpl implements StakeHolderService{
 
-    private final StakeHolderRepository stakeHolderRepository;
+    @Autowired
+    private StakeHolderRepository stakeHolderRepository;
 
     @Autowired
-    public StakeHolderServiceImpl(StakeHolderRepository stakeHolderRepository) {
-        this.stakeHolderRepository = stakeHolderRepository;
-    }
+    private ProjectService projectService;
 
     @Override
-    public StakeHolder createStakeHolder(StakeHolder stakeHolder) {
+    public StakeHolder createStakeHolder(StakeholderRequest stakeholderRequest) throws Exception {
+
+        Project project = projectService.getProjectById(stakeholderRequest.getProjectID());
+
+        StakeHolder stakeHolder = new StakeHolder();
+        stakeHolder.setName(stakeholderRequest.getName());
+        stakeHolder.setProject(project);
+        stakeHolder.setRole(stakeholderRequest.getRole());
+        stakeHolder.setContact(stakeholderRequest.getContact());
+        stakeHolder.setInfluence(stakeholderRequest.getInfluence());
+        stakeHolder.setProjectID(stakeholderRequest.getProjectID());
+
         return stakeHolderRepository.save(stakeHolder);
     }
 

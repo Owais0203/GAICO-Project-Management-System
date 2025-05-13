@@ -1,10 +1,11 @@
 package com.java.springBoot.backend.Controller;
 
+import com.java.springBoot.backend.DTO.CharterDTO;
 import com.java.springBoot.backend.Model.Charter;
-import com.java.springBoot.backend.Model.StakeHolder;
+import com.java.springBoot.backend.Request.CharterRequest;
 import com.java.springBoot.backend.Service.CharterService;
-import com.java.springBoot.backend.Service.CharterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +23,21 @@ public class CharterController {
 
     // Create charter
     @PostMapping
-    public Charter createCharter(@RequestBody Charter charter) {
-        return charterService.createCharter(charter);
+    public ResponseEntity<CharterDTO> createCharter(@RequestBody CharterRequest charterRequest) throws Exception {
+        Charter createdCharter = charterService.createCharter(charterRequest);
+
+        CharterDTO charterDTO = new CharterDTO();
+        charterDTO.setId(createdCharter.getId());
+        charterDTO.setApproved(createdCharter.getApproved());
+        charterDTO.setDescription(createdCharter.getDescription());
+        charterDTO.setTitle(createdCharter.getTitle());
+        charterDTO.setDeliverables(createdCharter.getDeliverables());
+        charterDTO.setObjective(createdCharter.getObjective());
+        charterDTO.setProjectID(createdCharter.getProjectID());
+        charterDTO.setProject(createdCharter.getProject());
+        charterDTO.setSponsors(createdCharter.getSponsors());
+
+        return ResponseEntity.ok(charterDTO);
     }
 
     // Get all charters

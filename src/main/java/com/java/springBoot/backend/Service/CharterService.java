@@ -1,13 +1,14 @@
 package com.java.springBoot.backend.Service;
 
 import com.java.springBoot.backend.Model.Charter;
+import com.java.springBoot.backend.Request.CharterRequest;
 
 import java.util.List;
 
 public interface CharterService {
 
     // Method to create a charter
-    Charter createCharter(Charter charter);
+    Charter createCharter(CharterRequest charter) throws Exception;
 
     // Method to get all charters
     List<Charter> getAllCharters();

@@ -20,6 +20,7 @@ public class Charter {
     private String objective;
     private String deliverables;
     private Boolean approved;
+    private Long projectID;
 
     @JsonIgnore
     @OneToOne

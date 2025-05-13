@@ -1,7 +1,9 @@
 package com.java.springBoot.backend.Service;
 
 import com.java.springBoot.backend.Model.Charter;
+import com.java.springBoot.backend.Model.Project;
 import com.java.springBoot.backend.Repository.CharterRepository;
+import com.java.springBoot.backend.Request.CharterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,28 @@ public class CharterServiceImpl implements CharterService {
     private final CharterRepository charterRepository;
 
     @Autowired
+    private ProjectService projectService;
+
+    @Autowired
     public CharterServiceImpl(CharterRepository charterRepository) {
         this.charterRepository = charterRepository;
     }
 
     @Override
-    public Charter createCharter(Charter charter) {
-        return charterRepository.save(charter);
+    public Charter createCharter(CharterRequest charterRequest) throws Exception {
+
+        Project project = projectService.getProjectById(charterRequest.getProjectID());
+        Charter newCharter = new Charter();
+        newCharter.setTitle(charterRequest.getTitle());
+        newCharter.setDescription(charterRequest.getDescription());
+        newCharter.setSponsors(charterRequest.getSponsors());
+        newCharter.setObjective(charterRequest.getObjective());
+        newCharter.setDeliverables(charterRequest.getDeliverables());
+        newCharter.setApproved(charterRequest.getApproved());
+        newCharter.setProject(project);
+        newCharter.setProjectID(charterRequest.getProjectID());
+
+        return charterRepository.save(newCharter);
     }
 
     @Override
